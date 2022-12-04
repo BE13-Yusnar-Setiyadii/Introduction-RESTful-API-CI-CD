@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"yusnar/clean-arch/config"
+	userRepo "yusnar/clean-arch/features/user/repository"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -16,4 +17,8 @@ func InitDB(cfg *config.AppConfig) *gorm.DB {
 		log.Fatal("Cant connect to DB")
 	}
 	return db
+}
+
+func DBMigration(db *gorm.DB) {
+	db.AutoMigrate(&userRepo.User{})
 }

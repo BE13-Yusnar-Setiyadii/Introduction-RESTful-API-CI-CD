@@ -14,6 +14,8 @@ func main() {
 	cfg := config.GetConfig()
 	db := mysql.InitDB(cfg)
 
+	mysql.DBMigration(db)
+
 	e := echo.New()
 
 	factory.InitFactory(db, e)
